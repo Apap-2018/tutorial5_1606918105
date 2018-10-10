@@ -28,12 +28,12 @@
       				</tr>
       			</thead>
       			<tbody> 
-      				<tr th:each="car,rowStat : *{listCar}">
-      					<td><input type="text" th:field="*{listCar[__${rowStat.index}__].brand}" /></td>
-      					<td><input type="text" th:field="*{listCar[__${rowStat.index}__].type}" /></td>
-      					<td><input type="number" th:field="*{listCar[__${rowStat.index}__].price}" /></td>
-      					<td><input type="number" th:field="*{listCar[__${rowStat.index}__].amount}" /></td>
-      					<td><button type="submit" name="removeRow" th:value="${rowStat.index}">Remove</button></td>
+      				<tr th:each="car,iterationStat : *{listCar}">
+      					<td><input type="text" th:field="*{listCar[__${iterationStat.index}__].brand}" /></td>
+      					<td><input type="text" th:field="*{listCar[__${iterationStat.index}__].type}" /></td>
+      					<td><input type="number" th:field="*{listCar[__${iterationStat.index}__].price}" /></td>
+      					<td><input type="number" th:field="*{listCar[__${iterationStat.index}__].amount}" /></td>
+      					<td><button type="submit" name="removeRow" th:value="${iterationStat.index}">Remove</button></td>
       					
       				</tr>
       			</tbody>
@@ -65,8 +65,7 @@
 <!--    <button type="submit">Submit</button> -->
 <!--   </form> -->
   
-<!--   <tr th:each="row,rowStat : *{listcar}"> -->
-<!--   <td> -->
+
   
   
   

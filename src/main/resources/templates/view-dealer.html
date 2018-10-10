@@ -11,6 +11,7 @@
 
 		<body>
 			<nav th:replace="fragments/fragment :: navbar"></nav>
+			<div class="container">
 	
 			<h3 th:text="'Informasi Dealer'"></h3>
 			<p th:text= "'Alamat: ' + ${dealer.alamat}"></p>
@@ -21,7 +22,7 @@
 		</form>
 		<br>
 		<form th:action="@{/car/delete}" th:object="${dealer}" method="POST">
-			<table>
+			<table class="table">
 					<thead>
 						<tr>
 							<th>No.</th>
@@ -37,7 +38,8 @@
 								<td th:text="${iterationStatus.count}"></td>
 								<td th:text="${car.brand}"></td>
 								<td th:text="${car.type}"></td>
-								<td th:text="${car.price} >= 1000000000 ? 'Diatas 1M' : 'Dibawah 1M'"></td>
+								<td th:if="${car.price} >= 1000000000">Diatas 1M</td>
+								<td th:unless="${car.price} >= 1000000000">Dibawah 1M</td>
 								<td th:text="${car.amount}"></td>	
 								<td>
 										<input type="checkbox" th:field="*{listCar}" th:value="${car.id}"/>
@@ -52,6 +54,7 @@
 	<form th:action="@{/car/add/} + ${dealer.id}">
 		<button value="submit">Tambah Mobil</button>
 	</form>
+</div>	
 </body>
 
 </html> 

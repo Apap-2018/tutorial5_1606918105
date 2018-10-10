@@ -36,15 +36,19 @@ public class CarController {
 		
 	}
 	
-	@RequestMapping(value="/car/add/{delaerId}", method = RequestMethod.POST, params= {"save"})
-	private String addCarSubmit(@ModelAttribute DealerModel dealer, Model model) {
+	@RequestMapping(value="/car/add/{dealerId}", method = RequestMethod.POST, params= {"save"})
+	private String addCarSubmit(@PathVariable (value = "dealerId") Long dealerId, @ModelAttribute DealerModel dealer, Model model) {
 		DealerModel dealerbyId = dealerService.getDealerDetailById(dealer.getId()).get();
 		for (CarModel car: dealer.getListCar()) {
 			car.setDealer(dealerbyId);
 			carService.addCar(car);
 		}
-		model.addAttribute("title", "Notifikasi Berhasil");
-		return "add";
+		
+		/*model.addAttribute("title", "Notifikasi Berhasil");
+		return "add";*/
+		
+		return "redirect:/dealer/view?dealerId=" + dealerId ; // GIMANA CARANYA REDIRECT
+		
 	}
 	
 	@RequestMapping(value = "/car/delete", method = RequestMethod.POST)
